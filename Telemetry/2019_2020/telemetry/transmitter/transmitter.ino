@@ -10,24 +10,24 @@
 
 //pinos
 
-#define SCK     5     // GPIO5  -- LoRa SX1278's SCK
-#define MISO    19    // GPIO19 -- LoRa SX1278's MISnO
-#define MOSI    27    // GPIO27 -- LoRa SX1278's MOSI
-#define SS      18    // GPIO18 -- LoRa SX1278's CS
-#define RST     14    // GPIO14 -- LoRa SX1278's RESET
-#define DI0     26    // GPIO26 -- LoRa SX1278's IRQ(Interrupt Request)
+#define SCK       5     // GPIO5  -- LoRa SX1278's SCK
+#define MISO      19    // GPIO19 -- LoRa SX1278's MISnO
+#define MOSI      27    // GPIO27 -- LoRa SX1278's MOSI
+#define SS        18    // GPIO18 -- LoRa SX1278's CS
+#define RST       14    // GPIO14 -- LoRa SX1278's RESET
+#define DI0       26    // GPIO26 -- LoRa SX1278's IRQ(Interrupt Request)
 
-#define RXPin    15  // Neo6M RX pin
-#define TXPin    12  // Neo6M TX pin
-#define GPSBaud 9600 // Neo6M Baud rate
+#define RXPin     15    // Neo6M RX pin
+#define TXPin     12    // Neo6M TX pin
+#define GPSBaud   9600  // Neo6M Baud rate
 
 // Mux defines
 
-#define S0 32 //MUX control pins
+#define S0 32           //MUX control pins
 #define S1 14
 #define S2 13
 #define S3 0
-#define MUX_SIG 4 //MUX input Pin
+#define MUX_SIG 4       //MUX input Pin
 
 // polynomial coefficients
 
