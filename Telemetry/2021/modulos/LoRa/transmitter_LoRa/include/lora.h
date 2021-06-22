@@ -7,14 +7,11 @@
 #define CONFIG_RST_GPIO     23
 #define CONFIG_MISO_GPIO    19
 #define CONFIG_MOSI_GPIO    27
-#define CONFIG_CLK_GPIO     05
+#define CONFIG_SCK_GPIO     05
 
 
 //TODO: colocar pinos em uma estrutura
-typedef struct lora_pins
-{
-
-};
+typedef struct lora_pins Lora_pins;
 
 void lora_reset(void);
 void lora_explicit_header_mode(void);
