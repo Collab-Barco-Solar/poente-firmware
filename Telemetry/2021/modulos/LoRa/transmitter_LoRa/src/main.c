@@ -18,4 +18,5 @@ void app_main()
    lora_set_frequency(915e6);
    lora_enable_crc();
    xTaskCreate(&task_tx, "task_tx", 2048, NULL, 5, NULL);
+   
 }
