@@ -13,7 +13,8 @@
                 "_UNICODE"
             ],
             "intelliSenseMode": "msvc-x64",
-            "forcedInclude": []
+            "forcedInclude": [],
+            "compileCommands": "${workspaceFolder}/Telemetry/2021/modulos/LoRa/transmitter_LoRa/build/compile_commands.json"
         }
     ],
     "version": 4
