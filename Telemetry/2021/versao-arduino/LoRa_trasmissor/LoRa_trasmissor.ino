@@ -14,9 +14,9 @@ void loop() {
   Serial.print("Sending packet: ");
   Serial.println(counter);
 
-  send_msg_lora("HELLO "+String(counter));
+  send_msg_lora("0.00000000,0.00000000,12.35,"+String(counter));
 
   counter++;
 
-  delay(5000);
+  delay(1000);
 }

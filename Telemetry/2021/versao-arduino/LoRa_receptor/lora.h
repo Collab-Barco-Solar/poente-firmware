@@ -7,14 +7,16 @@
 #include <Wire.h>
 
 /* Definicoes para comunicação com radio LoRa */
-#define SCK_LORA           5
-#define MISO_LORA          19
-#define MOSI_LORA          27
-#define RESET_PIN_LORA     23
-#define SS_PIN_LORA        18
- 
-#define HIGH_GAIN_LORA     20  /* dBm */
-#define BAND               915E6  /* 915MHz de frequencia */
+#define SCK     5       // GPIO5  -- SX1278's SCK
+#define MISO    19      // GPIO19 -- SX1278's MISO
+#define MOSI    27      // GPIO27 -- SX1278's MOSI
+#define SS      18      // GPIO18 -- SX1278's CS
+#define RST     14      // GPIO14 -- SX1278's RESET
+#define DI0     26      // GPIO26 -- SX1278's IRQ(Interrupt Request)
+#define FREQ    915E6   // Operating LoRa frequency
+#define SF      7       // Operating LoRa Spread Factor
+#define BAND    125E3   // Operating LoRa Bandwidth
+#define BAUD  2000000   // BAUD serial rate
 
 bool init_lora();
 void receber_dados_lora();

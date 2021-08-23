@@ -3,10 +3,10 @@
 bool init_lora(){
   bool status_init = false;
     Serial.println("[LoRa Sender] Tentando iniciar comunicacao com o radio LoRa...");
-    SPI.begin(SCK_LORA, MISO_LORA, MOSI_LORA, SS_PIN_LORA);
-    LoRa.setPins(SS_PIN_LORA, RESET_PIN_LORA, LORA_DEFAULT_DIO0_PIN);
+    SPI.begin(SCK,MISO,MOSI,SS);
+    LoRa.setPins(SS,RST,DI0); 
      
-    if (!LoRa.begin(BAND)) 
+    if (!LoRa.begin(FREQ)) 
     {
         Serial.println("[LoRa Sender] Comunicacao com o radio LoRa falhou. Nova tentativa em 1 segundo...");        
         delay(1000);
@@ -14,8 +14,10 @@ bool init_lora(){
     }
     else
     {
-        /* Configura o ganho do receptor LoRa para 20dBm, o maior ganho possível (visando maior alcance possível) */
-        LoRa.setTxPower(HIGH_GAIN_LORA); 
+        LoRa.setSpreadingFactor(SF);
+        LoRa.setSignalBandwidth(BAND);
+        LoRa.enableCrc();
+        LoRa.receive();
         Serial.println("[LoRa Sender] Comunicacao com o radio LoRa ok");
         status_init = true;
     }
@@ -26,14 +28,23 @@ bool init_lora(){
 void receber_dados_lora(){
   // try to parse packet
   int packetSize = LoRa.parsePacket();
+//  Serial.println(packetSize);
   if (packetSize) {
     // received a packet
     Serial.print("Received packet '");
 
+//    // read packet
+//    while (LoRa.available()) {
+//      Serial.print((char)LoRa.read());
+//    }
+
+    String LoRaData = "";
     // read packet
     while (LoRa.available()) {
-      Serial.print((char)LoRa.read());
+      LoRaData = LoRa.readString();
     }
+
+    Serial.print(LoRaData);
 
     // print RSSI of packet
     Serial.print("' with RSSI ");

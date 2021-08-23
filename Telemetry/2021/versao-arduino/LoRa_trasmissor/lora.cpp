@@ -18,6 +18,7 @@ bool init_lora(){
         LoRa.setTxPower(HIGH_GAIN_LORA); 
         Serial.println("[LoRa Sender] Comunicacao com o radio LoRa ok");
         status_init = true;
+        LoRa.enableCrc();
     }
  
     return status_init;
@@ -26,7 +27,7 @@ bool init_lora(){
 void send_msg_lora(String msg){
   /* Envia a informação */
   LoRa.beginPacket();
-  LoRa.write((unsigned char *)&msg, sizeof(msg));
+  LoRa.print(msg);
   LoRa.endPacket();
 
 }
