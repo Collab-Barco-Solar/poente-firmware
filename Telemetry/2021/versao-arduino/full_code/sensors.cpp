@@ -1,6 +1,6 @@
 #include "sensors.h"
 
-Adafruit_ADS1115 ads_battery_modules(BATTERY);
+Adafruit_ADS1115 ads_battery_modules(I2C_BATTERY);
 
 float BatteryVoltageRead(){
   ads_battery_modules.setGain(GAIN_ONE);        // 1x gain   +/- 4.096V  1 bit =   0.125mV
@@ -53,4 +53,13 @@ float MPPTCurrent(){ //Verificar a necessidade de fazer várias leituras e pegar
   
   //Convert the voltage to the current in the ACS758
   return (voltageRead - ACS758_VCC/2)*1000/ACS758_OUTPUT_SENSITIVITY;
+}
+
+float TemperatureRead(){
+    // Read the voltage out from the temperature sensor TMP235AQDCKTQ1
+    int bitsRead = analogRead(PORT_TEMP);
+    float voltageRead = bitsRead * ESP_MAXIMUM_VOLTAGE_IN / 1023;  //Convert from bits to the float number representing the voltage read
+
+    //Convert the voltage read to temperature https://pdf1.alldatasheetde.com/datasheet-pdf/view/1145216/TI1/TMP235AQDCKTQ1.html
+    return (voltageRead * 1000/TEMP_SLOPE_OUT) - TEMP_OFFSET;
 }
