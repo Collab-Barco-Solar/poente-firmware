@@ -14,10 +14,13 @@
 #define ESP_MAXIMUM_VOLTAGE_IN 3.3
 #define ACS712_OUTPUT_SENSITIVITY 44 // 44 mV/A - for model ACS71240LLCBTR-030B3 https://www.digikey.be/product-detail/en/allegro-microsystems/ACS71240LLCBTR-030B3/620-2052-1-ND/10146687
 #define ACS712_VCC 3.3
+#define ACS758_OUTPUT_SENSITIVITY 40 // 40 mV/A - for model ACS758LCB-050B-PFF-T https://pdf1.alldatasheet.com/datasheet-pdf/view/533456/ALLEGRO/ACS758_13.html
+#define ACS758_VCC 3.3
 
 //Esp ports
-#define PORT_12V_VM 32
-#define PORT_12V_CM 33
+#define PORT_12V_VM 33
+#define PORT_12V_CM 13
+#define PORT_MPPT_CM 32
 
 
 
@@ -25,5 +28,6 @@ float BatteryVoltageRead();
 float PVModulesVoltageRead();
 float Font12vVoltage();
 float Font12vCurrent();
+float MPPTCurrent();
 
 #endif

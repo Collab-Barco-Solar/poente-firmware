@@ -45,3 +45,12 @@ float Font12vCurrent(){ //Verificar a necessidade de fazer várias leituras e pe
   //Convert the voltage to the current in the ACS712
   return (voltageRead - ACS712_VCC/2)*1000/ACS712_OUTPUT_SENSITIVITY;
 }
+
+float MPPTCurrent(){ //Verificar a necessidade de fazer várias leituras e pegar a maior ou a média
+  // Read from ACS758
+  int bitsRead = analogRead(PORT_MPPT_CM);
+  float voltageRead = bitsRead * ESP_MAXIMUM_VOLTAGE_IN / 1023;  //Convert from bits to the float number representing the voltage read
+  
+  //Convert the voltage to the current in the ACS758
+  return (voltageRead - ACS758_VCC/2)*1000/ACS758_OUTPUT_SENSITIVITY;
+}
