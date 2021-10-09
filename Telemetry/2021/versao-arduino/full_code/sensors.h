@@ -3,6 +3,7 @@
 
 #include <Arduino.h>
 #include <Adafruit_ADS1015.h>
+#include <MCP3221.h>
 
 //I2C
 #define I2C_BATTERY  0x48  // Endereco do medidor ADC da bateria A0 - Batery Bank voltage // A1 - PV modules voltage
@@ -36,5 +37,7 @@ float Font12vVoltage();
 float Font12vCurrent();
 float MPPTCurrent();
 float TemperatureRead();
+void setupMCP();
+unsigned int MCPVoltage();
 
 #endif

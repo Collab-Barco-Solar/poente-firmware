@@ -2,6 +2,9 @@
 
 Adafruit_ADS1115 ads_battery_modules(I2C_BATTERY);
 
+const byte DEV_ADDR = 0x4D; // I2C address of the MCP3221
+MCP3221 mcp3221(DEV_ADDR);
+
 float BatteryVoltageRead(){
   ads_battery_modules.setGain(GAIN_ONE);        // 1x gain   +/- 4.096V  1 bit =   0.125mV
 
@@ -62,4 +65,16 @@ float TemperatureRead(){
 
     //Convert the voltage read to temperature https://pdf1.alldatasheetde.com/datasheet-pdf/view/1145216/TI1/TMP235AQDCKTQ1.html
     return (voltageRead * 1000/TEMP_SLOPE_OUT) - TEMP_OFFSET;
+}
+
+void setupMCP(){
+  mcp3221.setVref(4096);               // sets voltage reference for the ADC in mV (change as needed)
+  mcp3221.setVinput(VOLTAGE_INPUT_5V); // sets voltage input type to be measured (change as needed)
+  mcp3221.setRes1(10000);              // sets exact value of the voltage divider's Resistor 1 for 12V readings (change as needed)
+  mcp3221.setRes2(4700);               // sets exact value of the voltage divider's Resistor 2 for 12V readings (change as needed)
+  mcp3221.setAlpha(178);               // sets the Alpha value used by the EMAVG smoothing method (change as needed)
+}
+
+unsigned int MCPVoltage(){
+  return mcp3221.getVoltage();
 }
